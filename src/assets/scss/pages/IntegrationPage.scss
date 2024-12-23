@@ -1,0 +1,159 @@
+.integration-page {
+  background-color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  color: #333333;
+  padding: 60px 0;
+  transition: background-color 0.3s ease;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+    transition: color 0.3s ease;
+  }
+
+  p {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #666666;
+    line-height: 1.8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .integration-list {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .integration-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    &.payment-integration {
+      .integration-card {
+        flex: 0 0 60%;
+      }
+    }
+  }
+
+  .integration-image {
+    flex: 0 0 40%;
+    max-width: 400px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .integration-card {
+    flex: 1;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    h2 {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      color: #2c3e50;
+      transition: color 0.3s ease;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        font-size: 17px;
+        line-height: 1.8;
+        color: #555555;
+
+        .checkmark {
+          color: #4caf50;
+          margin-right: 10px;
+          font-size: 18px;
+          transition: transform 0.3s ease;
+        }
+      }
+
+      li:hover .checkmark {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .client-logos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+    margin-top: 20px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .integration-item {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 20px;
+
+      &.payment-integration {
+        .integration-card {
+          flex: 1;
+        }
+      }
+    }
+
+    .integration-image {
+      max-width: 100%;
+    }
+
+    .client-logos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700&display=swap");
+
+.differentiators {
+  padding: 4rem 6rem;
+  background: #ffffff;
+  min-height: 100vh;
+
+  .header-content {
+    max-width: 800px;
+    margin-bottom: 4rem;
+    margin-left: 4rem;
+
+    h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    samp {
+      font-family: "Montserrat", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #f39f1d;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    p {
+      font-family: "Roboto", sans-serif;
+      font-size: 1.1rem;
+      color: #696969;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .underline {
+      width: 160px;
+      height: 4px;
+      background: #f39f1d;
+      border-radius: 2px;
+    }
+  }
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .card {
+      position: relative;
+      background: rgb(255, 255, 255);
+      padding: 2rem;
+      box-shadow: none;
+      overflow: hidden;
+      cursor: pointer;
+
+      .card-content {
+        position: relative;
+        z-index: 2;
+
+        .icon-wrapper {
+          margin-bottom: 1.5rem;
+
+          .card-icon {
+            font-size: 2rem;
+            color: #f39f1d;
+          }
+        }
+
+        h3 {
+          font-family: "Montserrat", sans-serif;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #000000;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          font-family: "Roboto", sans-serif;
+          font-size: 1rem;
+          color: #696969;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}
+/* Dark Mode Styling */
+[data-bs-theme="dark"] {
+  .differentiators {
+    background: #121212; /* Black background */
+    color: #ffffff; /* White text color */
+
+    .header-content {
+      max-width: 800px;
+      margin-bottom: 4rem;
+      margin-left: 4rem;
+
+      h1 {
+        color: #ffffff; /* Change headings to white */
+      }
+
+      p {
+        color: #696969; /* Light grey text for paragraphs */
+      }
+
+      .underline {
+        background: #f39f1d; /* Blue underline stays the same */
+      }
+    }
+
+    .cards-container {
+      .card {
+        background: transparent; /* Transparent card background */
+      }
+
+      .card-content {
+        .icon-wrapper .card-icon {
+          color: #f39f1d; /* Blue color for icons */
+        }
+
+        h3 {
+          color: #ffffff; /* Heading text inside cards should be white */
+        }
+
+        p {
+          color: #696969; /* Light grey text for card paragraphs */
+        }
+      }
+    }
+  }
+}
+
+/* For better readability on smaller screens in dark mode */
+@media (max-width: 768px) {
+  [data-bs-theme="dark"] {
+    .differentiators {
+      padding: 2rem;
+
+      .header-content {
+        margin-left: 0;
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+
+      .cards-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .differentiators {
+    padding: 2rem;
+
+    .header-content {
+      margin-left: 0;
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    .cards-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+}

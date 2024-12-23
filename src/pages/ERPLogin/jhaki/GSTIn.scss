@@ -1,0 +1,162 @@
+// // Main Container with Orange and Blue Gradient
+// .container {
+//     min-height: 100vh;   // Full viewport height
+//     min-width: 100vw;    // Full viewport width
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background: linear-gradient(135deg, #f39c12, #6a5acd);  // Orange and blue/purple mix
+//     padding: 20px;
+//     position: relative;  // To ensure elements like progress bar remain correctly positioned
+//     box-sizing: border-box;  // Include padding and borders in element's total width and height
+// }
+
+
+// Progress Bar at the Top
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.progress {
+    height: 100%;
+    background-color: #28a745; // Green filling for progress
+    transition: width 0.3s ease;
+}
+
+// Form Container Styling
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 450px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); // Enhanced shadow for 3D effect
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    transform: translateZ(0); // Initiate GPU acceleration
+    transition: transform 0.2s ease; // Add smooth transition
+}
+
+// Card hover effect for 3D illusion
+.form-container:hover {
+    transform: translateY(-5px);
+}
+
+// Header Section
+.header {
+    margin-bottom: 20px;
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+    }
+    p {
+        font-size: 1rem;
+        color: #666;
+    }
+}
+
+// Steps and Progress Indicator
+.steps {
+    margin-bottom: 25px;
+}
+
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.circle.active {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.circle.completed {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.step-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.active-label {
+    color: #333;
+}
+
+.line {
+    flex: 1;
+    height: 2px;
+    background-color: #ddd;
+}
+
+.completed-line {
+    background-color: #28a745;
+}
+
+// Input and Button Styling
+.input-container {
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.input.valid {
+    border-color: #28a745;
+}
+
+.valid-feedback {
+    font-size: 0.9rem;
+    color: #28a745;
+    margin-top: 5px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    color: #fff;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.submit-btn.enabled:hover {
+    transform: scale(1.05);
+}
+
+.submit-btn.disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}

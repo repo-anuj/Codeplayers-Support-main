@@ -1,0 +1,123 @@
+.contact-section {
+  background: #ffffff;
+  color: #000000; /* Default text color for light mode */
+
+  .heading-animate {
+    font-size: 2.5rem;
+    color: #f39f1d;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .subtext-animate {
+    font-size: 1rem;
+    color: #6b7280;
+    animation: fadeInUp 1s ease;
+  }
+
+  .address-card {
+    padding: 1.5rem;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .address-text {
+      color: #696969;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+
+  .contact-form {
+    .input-container {
+      .form-label {
+        color: #72428e;
+      }
+
+      .input-field {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        padding: 0.75rem;
+        border-radius: 0.25rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+
+        &:hover {
+          border-color: #72428e;
+          box-shadow: 0px 4px 10px rgba(37, 99, 235, 0.2);
+        }
+      }
+    }
+
+    .submitBnt {
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      border: none;
+      background-color: #fb9600;
+      &:hover {
+        background-color: #f39f1d; // Darker blue on hover
+      }
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Dark Mode Styles */
+  [data-bs-theme="dark"] & {
+    background: #1f1f1f; /* Dark background */
+    color: #e4e4e7; /* Light text for dark mode */
+  }
+
+  [data-bs-theme="dark"] .heading-animate {
+    color: #f39f1d; /* Retain gold color for heading */
+  }
+
+  [data-bs-theme="dark"] .subtext-animate {
+    color: #a1a1aa; /* Lighter grey text for dark mode */
+  }
+
+  [data-bs-theme="dark"] .address-card {
+    background: #2a2a2a; /* Dark background for address card */
+    border: 1px solid #444444;
+    color: #e4e4e7; /* Light text inside address card */
+  }
+
+  [data-bs-theme="dark"] .address-text {
+    color: #e4e4e7; /* Light text for the address */
+  }
+
+  [data-bs-theme="dark"] .contact-form .input-container .form-label {
+    color: #e4e4e7; /* Lighter label color */
+  }
+
+  [data-bs-theme="dark"] .contact-form .input-container .input-field {
+    background: #333333;
+    border: 1px solid #555555;
+    color: #e4e4e7;
+  }
+
+  [data-bs-theme="dark"] .contact-form .input-container .input-field:hover {
+    border-color: #72428e;
+    box-shadow: 0px 4px 10px rgba(37, 99, 235, 0.2);
+  }
+
+  [data-bs-theme="dark"] .contact-form .submitBnt {
+    background-color: #fb9600; /* Retain button color */
+    color: #fff; /* Light text for button */
+  }
+
+  [data-bs-theme="dark"] .contact-form .submitBnt:hover {
+    background-color: #f39f1d;
+  }
+}

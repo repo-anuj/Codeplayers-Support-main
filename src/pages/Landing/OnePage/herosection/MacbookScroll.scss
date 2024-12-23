@@ -1,0 +1,89 @@
+.macbook-scroll {
+  min-height: 150vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  perspective: 800px;
+  transform: scale(1);
+
+  @media (max-width: 768px) {
+    transform: scale(1.5);
+  }
+
+  @media (max-width: 480px) {
+    transform: scale(0.45);
+  }
+
+  .title {
+    color: rgb(0, 0, 0);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .base {
+    height: 22rem;
+    width: 32rem;
+    background-color: #272729;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    z-index: -1;
+
+    .top-bar {
+      height: 2.5rem;
+      width: 100%;
+      position: relative;
+
+      .sound-bar {
+        inset: 0;
+        margin: auto;
+        width: 80%;
+        height: 1rem;
+        background-color: #050505;
+      }
+    }
+
+    .keyboard-area {
+      display: flex;
+      position: relative;
+
+      .speaker-left,
+      .speaker-right {
+        width: 10%;
+        overflow: hidden;
+      }
+
+      .keyboard {
+        width: 80%;
+      }
+    }
+
+    .bottom-grip {
+      height: 0.5rem;
+      width: 5rem;
+      margin: 0 auto;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, #272729, #050505);
+      border-radius: 1.5rem 1.5rem 0 0;
+    }
+
+    .gradient-overlay {
+      height: 10rem;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, #0b0b0f, transparent);
+      z-index: 50;
+    }
+  }
+}

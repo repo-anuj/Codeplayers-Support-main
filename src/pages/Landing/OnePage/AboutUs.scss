@@ -1,0 +1,184 @@
+.ezy__header17 {
+  /* Bootstrap variables */
+  --bs-body-color: #ffffff;
+  --bs-body-bg: rgb(255, 255, 255);
+
+  /* Easy Frontend variables */
+  --ezy-theme-color: rgb(13, 110, 253);
+  --ezy-theme-color-rgb: 13, 110, 253;
+  --ezy-heading-color: #fff;
+  --ezy-overlay-color: rgba(50, 62, 80, 0.7);
+
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Gray Block Style */
+.gray .ezy__header17,
+.ezy__header17.gray {
+  /* Bootstrap variables */
+  --bs-body-bg: rgb(246, 246, 246);
+
+  /* Easy Frontend variables */
+  --ezy-overlay-color: rgba(37, 46, 59, 0.7);
+}
+
+/* Dark Gray Block Style */
+.dark-gray .ezy__header17,
+.ezy__header17.dark-gray {
+  /* Bootstrap variables */
+  --bs-body-color: #ffffff;
+  --bs-body-bg: rgb(30, 39, 53);
+
+  /* Easy Frontend variables */
+  --ezy-overlay-color: rgba(20, 37, 59, 0.7);
+}
+
+/* Dark Block Style */
+.dark .ezy__header17,
+.ezy__header17.dark {
+  /* Bootstrap variables */
+  --bs-body-color: #ffffff;
+  --bs-body-bg: rgb(11, 23, 39);
+
+  /* Easy Frontend variables */
+  --ezy-overlay-color: rgba(11, 23, 39, 0.7);
+}
+
+.ezy__header17-overlay {
+  background: var(--ezy-overlay-color);
+  padding: 150px 0;
+}
+
+@media (min-width: 768px) {
+  .ezy__header17-overlay {
+    padding: 200px 0;
+  }
+}
+
+@media (min-width: 991px) {
+  .ezy__header17-overlay {
+    padding: 280px 0;
+  }
+}
+
+.ezy__header17-heading {
+  color: var(--ezy-heading-color);
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 52px;
+}
+
+@media (min-width: 768px) {
+  .ezy__header17-heading {
+    font-size: 70px;
+    line-height: 70px;
+  }
+}
+
+.ezy__header17-sub-heading {
+  color: var(--ezy-theme-color);
+  font-size: 40px;
+  line-height: 35px;
+  font-weight: 700;
+}
+
+.ezy__header17-bottom-line {
+  width: 100px;
+  height: 5px;
+  position: absolute;
+  bottom: 0;
+  background-color: var(--ezy-theme-color);
+}
+
+.ezy__header17-bottom-line:first-child {
+  left: -50px;
+}
+
+.ezy__header17-bottom-line:last-child {
+  right: -50px;
+}
+
+.ezy__header17-location {
+  color: var(--ezy-heading-color);
+}
+
+.ezy__header17-location [class*="fa-"] {
+  color: var(--ezy-theme-color);
+}
+.ezy__about6 {
+  /* Bootstrap variables */
+  --bs-body-color: #1e2329;
+  --bs-body-bg: rgb(255, 255, 255);
+
+  /* Easy Frontend variables */
+  --ezy-theme-color: rgb(13, 110, 253);
+  --ezy-theme-color-rgb: 13, 110, 253;
+
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  overflow: hidden;
+  padding: 60px 0;
+}
+
+@media (min-width: 768px) {
+  .ezy__about6 {
+    padding: 100px 0;
+  }
+}
+
+/* Gray Block Style */
+.gray .ezy__about6,
+.ezy__about6.gray {
+  /* Bootstrap variables */
+  --bs-body-bg: rgb(246, 246, 246);
+}
+
+/* Dark Gray Block Style */
+.dark-gray .ezy__about6,
+.ezy__about6.dark-gray {
+  /* Bootstrap variables */
+  --bs-body-color: #ffffff;
+  --bs-body-bg: rgb(30, 39, 53);
+}
+
+/* Dark Block Style */
+.dark .ezy__about6,
+.ezy__about6.dark {
+  /* Bootstrap variables */
+  --bs-body-color: #ffffff;
+  --bs-body-bg: rgb(11, 23, 39);
+}
+
+.ezy__about6-heading {
+  font-size: 35px;
+  line-height: 45px;
+}
+@media (min-width: 768px) {
+  .ezy__about6-heading {
+    font-size: 50px;
+    line-height: 70px;
+  }
+}
+.ezy__about6-sub-heading {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.ezy__about6-banner {
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+
+.ezy__about6-content p {
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: 0.7;
+}
+
+.ezy__about6 img {
+  border-radius: 15px;
+}

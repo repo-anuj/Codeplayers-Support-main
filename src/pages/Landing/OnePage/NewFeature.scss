@@ -1,0 +1,243 @@
+.features-container {
+  max-width: 1600px;
+  background: #f9f9f9;
+  margin: 0 auto;
+  padding: 6rem;
+
+  @media (max-width: 1024px) {
+    padding: 0px;
+  }
+  @media (max-width: 768px) {
+    padding: 0px;
+  }
+  .features-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      color: #000000;
+      font-weight: bold;
+    }
+    samp {
+      font-family: Inter, sans-serif;
+      text-align: center;
+      font-size: 3rem;
+      color: #f39f1d;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #696969;
+    }
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .feature-title {
+    color: #000000;
+    font-weight: 700;
+    margin-top: 3px;
+  }
+
+  .feature-card {
+    background: transparent;
+    padding: 1.5rem;
+
+    .feature-icon {
+      color: #f39f1d;
+    }
+
+    &.integration-card {
+      grid-column: 1 / -1;
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: #000000;
+      }
+
+      p {
+        color: #696969;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+      }
+
+      .integration-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0;
+        margin-top: 1rem;
+        overflow: hidden;
+
+        @media (max-width: 1024px) {
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(2, 0fr);
+        }
+
+        @media (max-width: 768px) {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(3, 0fr);
+        }
+
+        .integration-item {
+          aspect-ratio: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.5rem;
+          transition: all 0.3s ease;
+
+          img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+    .icon-wrapper {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      svg {
+        color: #f39f1d;
+      }
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 3px;
+      margin-bottom: 0.75rem;
+      color: #000000;
+    }
+
+    p {
+      color: #696969;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .learn-more {
+      background: none;
+      border: none;
+      color: #e7a73f;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .Flipcard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 0.25fr);
+    gap: 1.5rem;
+  }
+
+  .get-started-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    background: #f29f16;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #f29f16;
+    }
+  }
+}
+[data-bs-theme="dark"] .features-container {
+  background: #1f1f1f;
+  .features-header {
+    h1 {
+      color: #fff; // Heading color in dark mode
+    }
+
+    samp {
+      color: #f39f1d; // Adjusted color for standout text in dark mode
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8); // Subtle paragraph color
+    }
+  }
+
+  .features-grid {
+    .feature-card {
+      .feature-icon {
+        color: #f39f1d; // Icon color in dark mode
+      }
+
+      h4 {
+        color: #fff; // Card title color in dark mode
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.7); // Subtle card description color
+      }
+
+      .learn-more {
+        color: #f39f1d; // Highlighted link color for "Learn More"
+        &:hover {
+          color: #f39f1d; // Slight color change on hover
+        }
+      }
+    }
+
+    .integration-card {
+      h3 {
+        color: #fff; // Heading color for integration cards
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.7); // Paragraph text color
+      }
+    }
+  }
+
+  .icon-wrapper {
+    background: rgba(255, 255, 255, 0.1); // Subtle background for icons
+    svg {
+      color: #fff; // Icon color
+    }
+  }
+}
+
+.get-started-btn {
+  background: #f29f16; // Button background
+  color: #000; // Button text color in dark mode
+
+  &:hover {
+    background: #ffa834; // Slightly lighter shade on hover
+  }
+}

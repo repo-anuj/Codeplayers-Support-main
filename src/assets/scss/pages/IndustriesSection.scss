@@ -1,0 +1,453 @@
+// Variables
+$primary-color: #9333ea; // purple-600
+$primary-light: #f5f3ff; // purple-50
+$primary-text: #9333ea; // purple-600
+$bg-dark: #111827; // gray-900
+$bg-darker: #1f2937; // gray-800
+$text-white: #ffffff;
+$text-gray: #9ca3af;
+$text-dark: #111827;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin gradient-text {
+  background: linear-gradient(to right, $primary-color, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// Main styles
+.industries-section {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, $bg-dark, $bg-darker);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+
+  // Background decorations
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54 48L6 48M54 12L6 12M30 54L30 6' stroke='rgba(255, 255, 255, 0.02)' stroke-width='1'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  &__bg-glow {
+    position: absolute;
+    inset: 0;
+    @include flex-center;
+
+    &-circle {
+      height: 40rem;
+      width: 40rem;
+      background: $primary-color;
+      border-radius: 50%;
+      opacity: 0.1;
+      filter: blur(24px);
+      animation: pulse 2s infinite;
+    }
+  }
+
+  // Container
+  &__container {
+    position: relative;
+    height: 500px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  // Header
+  &__header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: $text-white;
+      margin-bottom: 1rem;
+
+      span {
+        color: $primary-color;
+      }
+    }
+
+    p {
+      color: $text-gray;
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &-line {
+      width: 6rem;
+      height: 0.25rem;
+      background: linear-gradient(to right, $primary-color, #60a5fa);
+      margin: 0 auto;
+    }
+  }
+
+  &__wheel-container {
+    position: relative;
+    height: 25vh;
+    right: 445px;
+    width: 85%;
+    overflow: visible;
+    @media (max-width: 768px) {
+      position: relative;
+      height: 25vh;
+      right: 498px;
+      width: 85%;
+      overflow: visible;
+    }
+
+    .wheel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transform-origin: center center;
+      will-change: transform;
+    }
+  }
+
+  // Cards
+  &__card {
+    position: absolute;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    cursor: pointer;
+    padding: 1.5rem;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    &--selected {
+      transform: scale(1.1);
+      box-shadow: 0 0 0 2px $primary-color;
+    }
+
+    &-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &-icon {
+      width: 3rem;
+      height: 3rem;
+      margin-bottom: 10px;
+      border-radius: 0.5rem;
+      @include flex-center;
+
+      img {
+        width: 4rem;
+        height: 6rem;
+        object-fit: contain;
+      }
+    }
+
+    &-title {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: $text-white;
+      margin-bottom: 0.5rem;
+    }
+
+    &-subtitle {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    &-status {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background: #4ade80;
+        animation: pulse 2s infinite;
+      }
+
+      &-text {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+
+  // Modal
+  &__modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 50;
+
+    &-content {
+      background: #ffffff;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 32rem;
+      position: relative;
+      padding: 2rem;
+      max-height: 90vh;
+      overflow-y: auto;
+
+      @media (max-width: 640px) {
+        padding: 1.5rem;
+        width: 95%;
+      }
+    }
+
+    &-close {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      padding: 0.5rem;
+      border-radius: 50%;
+      background: transparent;
+      transition: background-color 0.2s;
+      z-index: 2;
+
+      &:hover {
+        background: #f3f4f6;
+      }
+
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: #6b7280;
+      }
+    }
+
+    &-header {
+      margin-bottom: 1.5rem;
+      text-align: center;
+
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: $text-dark;
+        margin-bottom: 0.5rem;
+
+        @media (max-width: 640px) {
+          font-size: 1.5rem;
+        }
+      }
+
+      p {
+        color: #4b5563;
+        font-size: 1.125rem;
+
+        @media (max-width: 640px) {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    &-icon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      img {
+        width: 4rem;
+        height: 4rem;
+        object-fit: contain;
+      }
+    }
+
+    &-description {
+      color: #374151;
+      line-height: 1.6;
+      font-size: 1.125rem;
+      text-align: center;
+
+      @media (max-width: 640px) {
+        font-size: 1rem;
+      }
+    }
+
+    &-features {
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      &-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+
+        span {
+          padding: 0.5rem 1rem;
+          background: #f5f3ff;
+          color: #9333ea;
+          border-radius: 9999px;
+          font-size: 0.875rem;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    &-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+
+      .learn-more-btn {
+        background: #9333ea;
+        color: #ffffff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.2s;
+        font-weight: 500;
+
+        &:hover {
+          background: #7e22ce;
+        }
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+    &-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+
+      &-item {
+        background: #f9fafb;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+
+        .value {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: $primary-color;
+        }
+
+        .label {
+          font-size: 0.875rem;
+          color: #4b5563;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    &-features {
+      margin-bottom: 1.5rem;
+
+      h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      &-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        span {
+          padding: 0.25rem 0.75rem;
+          background: $primary-light;
+          color: $primary-text;
+          border-radius: 9999px;
+          font-size: 0.875rem;
+        }
+      }
+    }
+
+    &-description {
+      color: #374151;
+      margin-bottom: 1.5rem;
+    }
+
+    &-actions {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        background: $primary-color;
+        color: $text-white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background: darken($primary-color, 10%);
+        }
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  &__container {
+    overflow: hidden;
+  }
+
+  &__wheel-container {
+    position: relative;
+    transform: translateX(
+      50%
+    ); // Move wheel to maintain same position as desktop
+    margin-right: -50%; // Offset the transform
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}

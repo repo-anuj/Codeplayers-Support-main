@@ -1,0 +1,180 @@
+.keypad {
+  background-color: #050505;
+  margin: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  position: relative; /* To position the arrow keys correctly */
+
+  .key-row {
+    display: flex;
+    gap: 0.125rem;
+    margin-bottom: 0.125rem;
+
+    .key {
+      height: 1rem;
+      width: 1rem;
+      background-color: #0a090d;
+      border-radius: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 0.625rem;
+      box-shadow: 0 -0.5px 2px 0 #0d0d0f inset, -0.5px 0 2px 0 #0d0d0f inset;
+
+      &-icon {
+        font-size: 0.5rem;
+        margin-bottom: 0.125rem;
+      }
+
+      &-content {
+        line-height: 1;
+      }
+
+      &-small {
+        width: 2.5rem;
+        height: 1.5rem; /* Small keys (like escape) */
+        font-size: 0.75rem;
+      }
+
+      &-wide {
+        width: 3.5rem; /* Wider keys (like Command, Option, Space) */
+        font-size: 0.75rem;
+      }
+
+      &-fn {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+        font-size: 0.5rem; /* Smaller font size for function keys */
+      }
+    }
+  }
+
+  /* Arrow Keys Positioning */
+  .arrow-keys {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+
+    .arrow-bottom {
+      display: flex;
+      gap: 0.125rem;
+    }
+
+    .key {
+      width: 1.5rem; /* Same size as regular keys */
+      height: 1.5rem;
+    }
+  }
+
+  /* Modifier Keys Row (Mac-specific keys like Command, Option, Shift, Power) */
+  .key-row.modifiers {
+    display: flex;
+    justify-content: space-between; /* Ensures Command, Option, and Power are spread out */
+    gap: 0.25rem;
+
+    .key {
+      width: 14rem; /* Adjust width of modifier keys */
+      font-size: 0.75rem;
+    }
+
+    .key-wide {
+      width: 4.5rem; /* Larger width for the Space Bar */
+    }
+
+    .key-icon {
+      font-size: 0.75rem;
+    }
+  }
+
+  /* Space Bar Custom Style */
+  .key-space {
+    width: 8rem; /* Wider width for space bar */
+    font-size: 0.75rem;
+  }
+
+  /* Special key for Power */
+  .key-power {
+    background-color: #f44336; /* Red color for power key */
+  }
+}
+.keypad {
+  background-color: #050505;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+
+  .key-row {
+    display: flex;
+    gap: 0.125rem;
+    margin-bottom: 0.125rem;
+
+    .key {
+      height: 1.5rem;
+      width: 1.5rem;
+      background-color: #0a090d;
+      border-radius: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 0.75rem;
+      position: relative;
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+      animation: glow 1.5s infinite alternate;
+
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        to {
+          box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+      }
+
+      &-icon {
+        font-size: 0.5rem;
+        margin-bottom: 0.105rem;
+      }
+
+      &-content {
+        line-height: 1;
+      }
+
+      &-small {
+        width: 2.5rem;
+      }
+
+      &-wide {
+        width: 4.5rem;
+      }
+
+      &-fn {
+        font-size: 0.65rem;
+      }
+
+      &-power {
+        background-color: #0b0a0e;
+      }
+    }
+  }
+
+  .arrow-keys {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+
+    .arrow-bottom {
+      display: flex;
+      gap: 0.125rem;
+    }
+  }
+}

@@ -1,0 +1,211 @@
+.achievements-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  overflow: hidden;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #212529;
+
+      span {
+        color: #3b82f6;
+      }
+    }
+
+    .navigation-buttons {
+      display: flex;
+      gap: 0.5rem;
+
+      .nav-button {
+        background: #000;
+        color: #fff;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        &:not(:disabled):hover {
+          transform: scale(1.05);
+        }
+
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  .cards-section {
+    position: relative;
+    height: 280px;
+    width: 100%;
+    perspective: 1000px;
+
+    .achievement-card {
+      position: absolute;
+      width: 100%;
+      max-width: 700px;
+      height: 260px;
+      background: #fff;
+      border: 1px solid #005fbf;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      left: 50%;
+      transform: translateX(-50%);
+      transform-origin: center center;
+      will-change: transform;
+
+      .card-stripe {
+        width: 12px;
+        background: #000;
+        margin-right: 16px;
+      }
+
+      &:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transform: scale(1.02) translateX(-50%);
+      }
+
+      .card-content {
+        flex: 1;
+        padding: 1.5rem 1.5rem 1.5rem 0;
+
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1.5rem;
+
+          h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+          }
+
+          .icon-container {
+            padding: 0.8rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.3); // Dark mode
+            border: 1px solid rgba(0, 0, 0, 0.1); // Light mode
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.1);
+            }
+
+            svg {
+              font-size: 1.2rem;
+            }
+          }
+        }
+
+        p {
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+      }
+
+      &.dark {
+        background: #000;
+        color: #fff;
+
+        .card-stripe {
+          background: #333;
+        }
+
+        p {
+          color: rgba(255, 255, 255, 0.8);
+        }
+
+        .icon-container {
+          background: rgba(255, 255, 255, 0.1);
+          color: #fff;
+        }
+      }
+
+      &.light {
+        background: #fff;
+
+        p {
+          color: #666;
+        }
+
+        .icon-container {
+          background: #f5f5f5;
+          color: #000;
+        }
+      }
+    }
+  }
+}
+[data-bs-theme="dark"] .achievements-container {
+  color: #fff; // Default text color for dark mode
+
+  .header {
+    .title {
+      color: #fff; // Heading color in dark mode
+
+      span {
+        color: #3b82f6; // Keep the highlighted span color consistent
+      }
+    }
+  }
+
+  .cards-section {
+    .achievement-card {
+      background: black; // Transparent card background
+      border: 1px solid rgba(255, 255, 255, 0.2); // Subtle border for cards
+      color: #fff; // Text color for the card content
+
+      .card-stripe {
+        background: rgba(255, 255, 255, 0.2); // Lighter stripe for contrast
+      }
+
+      .card-content {
+        .card-header {
+          h2 {
+            color: #fff; // Card heading color in dark mode
+          }
+
+          .icon-container {
+            background: rgba(255, 255, 255, 0.2); // Transparent icon background
+            color: #fff; // Icon color in dark mode
+            border-color: rgba(255, 255, 255, 0.3); // Border for dark mode
+          }
+        }
+
+        p {
+          color: rgba(255, 255, 255, 0.8); // Subtle text color for paragraphs
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3); // Softer glow on hover
+      }
+    }
+  }
+}

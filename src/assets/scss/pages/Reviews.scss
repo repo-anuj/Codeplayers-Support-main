@@ -1,0 +1,31 @@
+.reviews-section {
+    position: relative;
+    padding: 60px 0;
+    background-color: #4b38b3; // Set a dark background for contrast
+  
+    .bg-overlay {
+      // Optional: Adjust the background overlay if necessary
+      opacity: 0.5;
+    }
+  
+    .quotes-icon {
+      margin-bottom: 20px;
+    }
+  
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.1); // Semi-transparent background for testimonials
+      border-radius: 15px;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+  
+      .testimonial-content {
+        text-align: center;
+  
+        .testimonial-image {
+          width: 80px;
+          height: 80px;
+        }
+      }
+    }
+  }
+  

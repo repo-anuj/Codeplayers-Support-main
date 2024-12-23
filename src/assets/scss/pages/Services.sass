@@ -1,0 +1,67 @@
+.services-details
+  padding: 60px 0
+
+  .section-title
+    margin-bottom: 40px
+
+    h2
+      font-size: 32px
+      font-weight: bold
+      margin-bottom: 20px
+
+    p
+      font-size: 18px
+
+  .services-item
+    margin-bottom: 30px
+    padding: 20px
+    border: 1px solid #e0e0e0
+    border-radius: 8px
+    transition: all 0.3s ease
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+    &:hover
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)
+      background-color: #f8f8f8
+      transform: scale(1.05)
+      transition: transform 0.3s ease
+
+    .image-container
+      margin-bottom: 15px
+
+      img
+        max-width: 100%
+        height: auto
+        border-radius: 8px
+
+    .content
+      h3
+        font-size: 20px
+        margin-bottom: 10px
+
+      p
+        font-size: 14px
+        color: #666
+
+    .extra-img-container
+      margin-top: 15px
+
+      .extra-img
+        max-width: 100px
+        height: auto
+
+  @media (max-width: 768px)
+    .col-md-4
+      width: 100%
+
+// Flexbox for equal height cards
+.row
+  display: flex
+  flex-wrap: wrap
+
+  .col-md-4
+    display: flex
+    flex-direction: column
