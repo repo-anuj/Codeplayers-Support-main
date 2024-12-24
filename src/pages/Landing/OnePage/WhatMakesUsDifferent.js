@@ -13,58 +13,89 @@ import "../../../assets/scss/pages/WhatMakesUsDifferent.scss";
 const Differentiators = () => {
   const cards = [
     {
-      icon: <FaStar className="card-icon" />,
+      icon: <FaStar />,
       title: "Innovation at Core",
       description:
         "We don't just follow trends - we set them. Our dedicated R&D team constantly pushes the boundaries of what's possible.",
     },
     {
-      icon: <FaUsers className="card-icon" />,
+      icon: <FaUsers />,
       title: "Client-Centric Approach",
       description:
         "Every solution is tailored to your specific needs. We believe in partnerships, not just projects.",
     },
     {
-      icon: <FaBolt className="card-icon" />,
+      icon: <FaBolt />,
       title: "24/7 Expert Support",
       description:
         "Round-the-clock dedicated support team ensuring your operations run smoothly without interruption.",
     },
     {
-      icon: <FaChartLine className="card-icon" />,
+      icon: <FaChartLine />,
       title: "Proven Track Record",
       description:
         "15+ years of excellence with 500+ successful projects across diverse industries.",
     },
     {
-      icon: <FaRocket className="card-icon" />,
+      icon: <FaRocket />,
       title: "Future-Ready Solutions",
       description:
         "Our solutions are built with scalability in mind, growing alongside your business.",
     },
     {
-      icon: <FaPiggyBank className="card-icon" />,
+      icon: <FaPiggyBank />,
       title: "Cost-Effective Excellence",
       description:
         "Premium solutions that provide exceptional value without breaking your budget.",
     },
   ];
 
+  const headerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const containerVariants = {
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   return (
     <div className="differentiators" id="features">
       <motion.div
         className="header-content"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={headerVariants}
       >
         <h1>
           STREAMLINED OPERATIONS WITH{" "}
-          <samp> ENTERPRISE-GRADE ERP SOLUTIONS</samp>
+          <samp>ENTERPRISE-GRADE ERP SOLUTIONS</samp>
         </h1>
-        <div className="underline"></div>
-        <br />
+        <div className="underline" />
         <p>
           Unlock the full potential of your business with our comprehensive ERP
           solutions designed to streamline processes, reduce costs, and
@@ -75,24 +106,38 @@ const Differentiators = () => {
         </p>
       </motion.div>
 
-      <div className="cards-container">
+      <motion.div
+        className="cards-container"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
         {cards.map((card, index) => (
           <motion.div
-            className="card"
             key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
+            className="card"
+            variants={cardVariants}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+              transition: { duration: 0.3 },
+            }}
           >
             <div className="card-content">
-              <div className="icon-wrapper">{card.icon}</div>
+              <motion.div
+                className="icon-wrapper"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <span className="card-icon">{card.icon}</span>
+              </motion.div>
               <h3>{card.title}</h3>
               <p>{card.description}</p>
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

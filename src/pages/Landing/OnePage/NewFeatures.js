@@ -115,7 +115,7 @@ const Features = () => {
           className="features-grid"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.2, delay: 0.2 }}
           viewport={{ once: true }}
         >
           <IntegrationCard />

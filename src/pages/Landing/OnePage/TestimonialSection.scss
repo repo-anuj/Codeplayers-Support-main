@@ -171,7 +171,7 @@
 [data-bs-theme="dark"] .testimonial-section {
   .testimonial-header {
     .show-for {
-      color: #a8d8ff;
+      color: #f39f1d;
 
       &:hover {
         text-decoration: underline;
@@ -198,17 +198,17 @@
         }
 
         &:hover {
-          border-color: #a8d8ff;
-          color: #a8d8ff;
+          border-color: #f39f1d;
+          color: #f39f1d;
 
           svg {
-            color: #a8d8ff;
+            color: #f39f1d;
           }
         }
 
         &.active {
-          background: #4361ee;
-          border-color: #4361ee;
+          background: #f39f1d;
+          border-color: #f39f1d;
           color: white;
 
           svg {

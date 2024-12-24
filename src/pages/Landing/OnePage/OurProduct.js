@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./OurProduct.scss";
 import infinityERP from "../../../assets/images/landing/features/mockuper5.png";
@@ -65,7 +65,7 @@ const OurProduct = () => {
   ];
 
   return (
-    <div className="parallax-product" id="services" ref={containerRef}>
+    <section className="parallax-product" ref={containerRef} id="services">
       <div className="parallax-product-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -81,17 +81,19 @@ const OurProduct = () => {
           </p>
         </motion.div>
 
-        {products.map((product, index) => (
-          <ProductSection
-            key={product.title}
-            product={product}
-            index={index}
-            scrollYProgress={scrollYProgress}
-            backgroundImage={backgroundIllustrations[index]}
-          />
-        ))}
+        <div className="product-sections-container">
+          {products.map((product, index) => (
+            <ProductSection
+              key={product.title}
+              product={product}
+              index={index}
+              scrollYProgress={scrollYProgress}
+              backgroundImage={backgroundIllustrations[index]}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -107,22 +109,29 @@ const ProductSection = ({
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(sectionProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(sectionProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const y = useTransform(sectionProgress, [0, 1], [50, -50]); // Reduced movement range
+  const opacity = useTransform(
+    sectionProgress,
+    [0, 0.2, 0.8, 1],
+    [0.3, 1, 1, 0.3]
+  ); // Adjusted opacity range
   const scale = useTransform(
     sectionProgress,
     [0, 0.2, 0.8, 1],
-    [0.8, 1, 1, 0.8]
-  );
+    [0.95, 1, 1, 0.95]
+  ); // Reduced scale range
 
-  // Background parallax effect
-  const backgroundY = useTransform(sectionProgress, [0, 1], ["-10%", "10%"]);
+  // Smoother background parallax
+  const backgroundY = useTransform(sectionProgress, [0, 1], ["-5%", "5%"]); // Reduced movement
 
   return (
     <motion.div
       ref={sectionRef}
       className="parallax-product-section"
-      style={{ opacity }}
+      style={{
+        opacity,
+        willChange: "opacity, transform",
+      }}
     >
       <motion.div
         className="background-illustration"
@@ -134,6 +143,7 @@ const ProductSection = ({
             [0, 0.2, 0.8, 1],
             [0, 0.15, 0.15, 0]
           ),
+          willChange: "transform",
         }}
       />
       <div
@@ -141,7 +151,14 @@ const ProductSection = ({
           index % 2 !== 0 ? "reverse" : ""
         }`}
       >
-        <motion.div className="text-content" style={{ y, scale }}>
+        <motion.div
+          className="text-content"
+          style={{
+            y,
+            scale,
+            willChange: "transform",
+          }}
+        >
           <h2>{product.title}</h2>
           <h3>{product.subtitle}</h3>
           <p>{product.description}</p>
@@ -150,8 +167,15 @@ const ProductSection = ({
               <motion.li
                 key={feature}
                 initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: idx * 0.1 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    duration: 0.5,
+                    delay: idx * 0.1,
+                  },
+                }}
+                viewport={{ once: true, margin: "-50px" }}
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path
@@ -169,7 +193,11 @@ const ProductSection = ({
 
         <motion.div
           className="visual-content"
-          style={{ y: useTransform(y, (value) => value * -1), scale }}
+          style={{
+            y: useTransform(y, (value) => value * -0.5), // Reduced counter-movement
+            scale,
+            willChange: "transform",
+          }}
         >
           <div className="product-card">
             <img src={product.img} alt={`${product.title} preview`} />

@@ -54,7 +54,7 @@ const ContentItem = ({ item, index }) => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.5,
+          duration: 0.2,
           delay: index * 0.2,
         }}
         viewport={{ once: true }}
@@ -79,7 +79,7 @@ const ContentItem = ({ item, index }) => {
                 className="card-title mb-2"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ delay: index * 0.2 + 0.3 }}
+                transition={{ delay: index * 0.2 + 0.1 }}
               >
                 {item.title}
               </motion.h5>
@@ -87,7 +87,7 @@ const ContentItem = ({ item, index }) => {
                 className="card-text text-muted"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ delay: index * 0.2 + 0.4 }}
+                transition={{ delay: index * 0.2 + 0.1 }}
               >
                 {item.text}
               </motion.p>

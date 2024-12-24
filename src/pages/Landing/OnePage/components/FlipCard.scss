@@ -1,0 +1,70 @@
+// FlipCard.scss
+.flip-card {
+  height: 18rem; // 72px
+  width: 14rem; // 56px
+  perspective: 1000px;
+
+  &__inner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+  }
+
+  &__front,
+  &__back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+  }
+
+  &__front {
+    .flip-card__image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  &__back {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    color: #e2e8f0;
+  }
+
+  &__content {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  &__subtitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  &__description {
+    margin-top: 0.25rem;
+    padding: 1rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #f3f4f6;
+    border-top: 1px solid #e2e8f0;
+  }
+}

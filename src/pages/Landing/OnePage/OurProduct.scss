@@ -51,6 +51,9 @@
       background-repeat: no-repeat;
       pointer-events: none;
       z-index: -1;
+      @media (max-width: 768px) {
+        opacity: 0 !important;
+      }
     }
 
     &-content {
