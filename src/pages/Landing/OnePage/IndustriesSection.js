@@ -24,6 +24,7 @@ const IndustriesSection = () => {
   const cardsRef = useRef([]);
   const dragInstanceRef = useRef(null);
   const rotationRef = useRef(null);
+  const lastTouchRef = useRef(null);
 
   // Your existing industries array (same as before)
   const industries = [
@@ -188,13 +189,13 @@ const IndustriesSection = () => {
     ...(duplicateCount > 1
       ? industries.map((industry) => ({
           ...industry,
-          uniqueId: `${industry.id}-1`,
+          uniqueId: `${industry.id}-2`,
         }))
       : []),
     ...(duplicateCount > 2
       ? industries.map((industry) => ({
           ...industry,
-          uniqueId: `${industry.id}-1`,
+          uniqueId: `${industry.id}-3`,
         }))
       : []),
   ];
@@ -204,15 +205,14 @@ const IndustriesSection = () => {
 
     const wheel = wheelRef.current;
     const cards = cardsRef.current;
+    const isMobile = window.innerWidth <= 768;
 
-    // Fixed calculations for consistent wheel size
     const cardCount = cards.length;
-    const cardCircumference = cardSize + 20; // Card size + fixed gap
+    const cardCircumference = cardSize + (isMobile ? 10 : 20);
     const radius = (cardCircumference * cardCount) / (2 * Math.PI);
     const slice = 360 / cardCount;
     const DEG2RAD = Math.PI / 180;
 
-    // Position cards
     cards.forEach((card, i) => {
       if (card) {
         gsap.set(card, {
@@ -221,17 +221,16 @@ const IndustriesSection = () => {
           rotation: i * slice,
           xPercent: -50,
           yPercent: -50,
-          width: cardSize,
-          height: cardSize,
+          width: isMobile ? cardSize * 0.9 : cardSize,
+          height: isMobile ? cardSize * 0.9 : cardSize,
         });
       }
     });
 
-    // Set consistent wheel size
     gsap.set(wheel, {
       width: radius * 2,
       height: radius * 2,
-      x: "50%",
+      x: isMobile ? "75%" : "50%",
       xPercent: -50,
       y: "50%",
       yPercent: -50,
@@ -241,12 +240,10 @@ const IndustriesSection = () => {
   const startRotation = () => {
     if (!isRotating || !wheelRef.current) return;
 
-    // Kill any existing rotation animation
     if (rotationRef.current) {
       rotationRef.current.kill();
     }
 
-    // Create and store the new rotation animation
     rotationRef.current = gsap.to(wheelRef.current, {
       rotation: "+=360",
       duration: 40,
@@ -260,8 +257,24 @@ const IndustriesSection = () => {
       rotationRef.current.kill();
     }
   };
-  const handleCardClick = (industry, index) => {
-    // Prevent click handling during drag
+
+  const handleCardInteraction = (industry, index, event) => {
+    if (event) {
+      event.preventDefault();
+    }
+
+    if (event?.type === "touchend" && lastTouchRef.current) {
+      const touch = event.changedTouches[0];
+      const moveDistance = Math.hypot(
+        touch.pageX - lastTouchRef.current.x,
+        touch.pageY - lastTouchRef.current.y
+      );
+
+      if (moveDistance > 10) {
+        return;
+      }
+    }
+
     if (dragInstanceRef.current?.isDragging) return;
 
     const isClosing = selectedCard?.uniqueId === industry.uniqueId;
@@ -287,6 +300,15 @@ const IndustriesSection = () => {
     });
   };
 
+  const handleTouchStart = (event) => {
+    const touch = event.touches[0];
+    lastTouchRef.current = { x: touch.pageX, y: touch.pageY };
+  };
+
+  const handleTouchEnd = (industry, index, event) => {
+    handleCardInteraction(industry, index, event);
+  };
+
   const handleOutsideClick = (e) => {
     if (
       selectedCard &&
@@ -295,11 +317,7 @@ const IndustriesSection = () => {
     ) {
       setSelectedCard(null);
       setIsRotating(true);
-
-      // Add a slight delay before starting rotation to ensure smooth transition
-      gsap.delayedCall(0.1, () => {
-        startRotation();
-      });
+      startRotation();
     }
   };
 
@@ -310,6 +328,8 @@ const IndustriesSection = () => {
     dragInstanceRef.current = Draggable.create(wheelRef.current, {
       type: "rotation",
       inertia: true,
+      allowContextMenu: true,
+      allowEventDefault: true,
       onDragStart: () => {
         setIsRotating(false);
         stopRotation();
@@ -322,18 +342,30 @@ const IndustriesSection = () => {
       },
     })[0];
 
-    window.addEventListener("resize", setup);
+    const handleResize = () => {
+      setup();
+      if (dragInstanceRef.current) {
+        dragInstanceRef.current.kill();
+        dragInstanceRef.current = Draggable.create(wheelRef.current, {
+          type: "rotation",
+          inertia: true,
+          allowContextMenu: true,
+          allowEventDefault: true,
+        })[0];
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
     document.addEventListener("click", handleOutsideClick);
 
     return () => {
-      window.removeEventListener("resize", setup);
+      window.removeEventListener("resize", handleResize);
       document.removeEventListener("click", handleOutsideClick);
       dragInstanceRef.current?.kill();
       stopRotation();
     };
   }, [duplicateCount, cardSize]);
 
-  // Add effect to handle rotation state changes
   useEffect(() => {
     if (isRotating && !selectedCard) {
       startRotation();
@@ -368,7 +400,9 @@ const IndustriesSection = () => {
                     ? "industries-section__card--selected"
                     : ""
                 }`}
-                onClick={() => handleCardClick(industry, index)}
+                onClick={(e) => handleCardInteraction(industry, index, e)}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={(e) => handleTouchEnd(industry, index, e)}
                 style={{
                   width: `${cardSize}px`,
                   height: `${cardSize}px`,
@@ -390,14 +424,8 @@ const IndustriesSection = () => {
           </div>
 
           {selectedCard && (
-            <div
-              className="industries-section__modal"
-              onClick={handleOutsideClick}
-            >
-              <div
-                className="industries-section__modal-content"
-                onClick={(e) => e.stopPropagation()}
-              >
+            <div className="industries-section__modal">
+              <div className="industries-section__modal-content">
                 <button
                   onClick={() => {
                     setSelectedCard(null);

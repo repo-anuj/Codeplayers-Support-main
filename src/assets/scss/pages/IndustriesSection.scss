@@ -115,6 +115,11 @@ $text-dark: #111827;
       transform: translate(-50%, -50%);
       transform-origin: center center;
       will-change: transform;
+
+      @media (max-width: 768px) {
+        top: 55%;
+        left: -13%;
+      }
     }
   }
 
@@ -163,7 +168,7 @@ $text-dark: #111827;
       font-size: 0.6rem;
       font-weight: 600;
       color: $text-white;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
 
     &-subtitle {
