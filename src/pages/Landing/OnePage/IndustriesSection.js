@@ -221,8 +221,8 @@ const IndustriesSection = () => {
           rotation: i * slice,
           xPercent: -50,
           yPercent: -50,
-          width: isMobile ? cardSize * 0.9 : cardSize,
-          height: isMobile ? cardSize * 0.9 : cardSize,
+          width: isMobile ? cardSize * 0.8 : cardSize,
+          height: isMobile ? cardSize * 0.8 : cardSize,
         });
       }
     });

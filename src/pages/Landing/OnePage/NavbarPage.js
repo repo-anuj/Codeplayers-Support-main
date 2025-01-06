@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Collapse, Container, NavbarToggler } from "reactstrap";
+import { Collapse, Container, NavbarToggler, NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useScrollNavigation } from "../../../utils/NavigationUtils";
 import LightDark from "../../../Components/Common/LightDark";
@@ -32,6 +32,18 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
     setIsOpenMenu(false);
   };
 
+  const isActiveLink = (path) => {
+    if (location.pathname === "/Landing" || location.pathname === "/") {
+      return location.hash === `#${path}`;
+    }
+    return location.pathname === `/${path}`;
+  };
+
+  const activeStyle = {
+    color: "#9f7aea",
+    fontWeight: "500",
+  };
+
   const getNavLinkClass = (section) => {
     return `nav-link fs-14 ${activeSection === section ? "active" : ""}`;
   };
@@ -48,13 +60,13 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
               src={logodark}
               className="card-logo card-logo-dark"
               alt="logo dark"
-              height="20"
+              height="60"
             />
             <img
               src={logolight}
               className="card-logo card-logo-light"
               alt="logo light"
-              height="20"
+              height="60"
             />
           </Link>
 
@@ -120,13 +132,27 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
                 </a>
               </li>
               <li className="nav-item">
-                <Link to="/AboutUs" className="nav-link fs-14">
-                  About Us
+                <Link to="/AboutUs">
+                  <NavLink
+                    className="fs-14"
+                    style={location.pathname === "/AboutUs" ? activeStyle : {}}
+                    onClick={() => setIsOpenMenu(false)}
+                  >
+                    About Us
+                  </NavLink>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/CareerPage" className="nav-link fs-14">
-                  Career
+                <Link to="/CareerPage">
+                  <NavLink
+                    className="fs-14"
+                    style={
+                      location.pathname === "/CareerPage" ? activeStyle : {}
+                    }
+                    onClick={() => setIsOpenMenu(false)}
+                  >
+                    Career
+                  </NavLink>
                 </Link>
               </li>
             </ul>

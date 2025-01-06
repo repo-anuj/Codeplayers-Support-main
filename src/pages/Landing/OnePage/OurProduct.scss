@@ -120,6 +120,10 @@
 
     .visual-content {
       position: relative;
+      @media (max-width: 768px) {
+        position: relative;
+        right: 65px;
+      }
 
       .product-card {
         padding: 1.5rem;

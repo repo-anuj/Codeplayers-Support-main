@@ -125,11 +125,7 @@ const Differentiators = () => {
             }}
           >
             <div className="card-content">
-              <motion.div
-                className="icon-wrapper"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-              >
+              <motion.div className="icon-wrapper">
                 <span className="card-icon">{card.icon}</span>
               </motion.div>
               <h3>{card.title}</h3>

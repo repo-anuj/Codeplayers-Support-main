@@ -13,6 +13,7 @@ import IndustriesSection from "./IndustriesSection";
 import WhatMakesUsDifferent from "./WhatMakesUsDifferent";
 // import Achievement from "./Achievement";
 import OurProduct from "./OurProduct";
+import LandingLoader from "./Loader";
 import TestimonialSection from "./TestimonialSection";
 import Features from "./NewFeatures";
 import { useSelector, useDispatch } from "react-redux";
@@ -43,9 +44,7 @@ const Index = () => {
       dispatch(changeLayoutMode(layoutModeType));
     }
   }, [layoutModeType, dispatch]);
-  /*
-call dark/light mode
-*/
+
   const onChangeLayoutMode = (value) => {
     if (changeLayoutMode) {
       dispatch(changeLayoutMode(value));
@@ -73,6 +72,7 @@ call dark/light mode
 
   return (
     <React.Fragment>
+      <LandingLoader />
       <div className="layout-wrapper landing">
         <Navbar
           onChangeLayoutMode={onChangeLayoutMode}

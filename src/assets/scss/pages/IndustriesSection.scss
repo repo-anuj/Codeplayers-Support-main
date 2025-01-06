@@ -117,8 +117,14 @@ $text-dark: #111827;
       will-change: transform;
 
       @media (max-width: 768px) {
-        top: 55%;
+        top: 100%;
         left: -13%;
+      }
+      .industries-section__card {
+        @media (max-width: 768px) {
+          width: 110px !important;
+          height: 122px !important;
+        }
       }
     }
   }

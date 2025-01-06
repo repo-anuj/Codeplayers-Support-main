@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Collapse, Container, NavbarToggler, NavLink } from "reactstrap";
 import Scrollspy from "react-scrollspy";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LightDark from "../../../Components/Common/LightDark";
 // Import Images
 import logodark from "../../../assets/images/logo-light.png";
@@ -10,6 +10,8 @@ import logolight from "../../../assets/images/logo-light.png";
 const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [navClass, setNavClass] = useState("");
+  const [activeItem, setActiveItem] = useState("hero");
+  const location = useLocation();
 
   const toggle = () => setIsOpenMenu(!isOpenMenu);
 
@@ -25,38 +27,30 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
     };
   }, []);
 
-  const [activeLink, setActiveLink] = useState();
-
+  // Handle initial active state based on current route
   useEffect(() => {
-    const activation = (event) => {
-      const target = event.target;
-      if (target) {
-        target.classList.add("active");
-        setActiveLink(target);
-        if (activeLink && activeLink !== target) {
-          activeLink.classList.remove("active");
-        }
-        // Close the dropdown menu after clicking a link
-        setIsOpenMenu(false);
-      }
-    };
-
-    const defaultLink = document.querySelector(".navbar li a.active");
-    if (defaultLink) {
-      defaultLink.classList.add("active");
-      setActiveLink(defaultLink);
+    if (location.pathname === "/Landing" || location.pathname === "/") {
+      // On landing page, check for hash or default to "hero"
+      const hash = location.hash.replace("#", "") || "hero";
+      setActiveItem(hash);
+    } else {
+      // On other pages, set active based on pathname
+      const path = location.pathname.replace("/", "");
+      setActiveItem(path);
     }
-    const links = document.querySelectorAll(".navbar a");
-    links.forEach((link) => {
-      link.addEventListener("click", activation);
-    });
+  }, [location]);
 
-    return () => {
-      links.forEach((link) => {
-        link.removeEventListener("click", activation);
-      });
-    };
-  }, [activeLink]);
+  const handleNavClick = (itemId) => {
+    setActiveItem(itemId);
+    setIsOpenMenu(false);
+  };
+
+  const isItemActive = (itemId) => {
+    if (location.pathname === "/Landing" || location.pathname === "/") {
+      return activeItem === itemId;
+    }
+    return location.pathname.includes(itemId);
+  };
 
   return (
     <React.Fragment>
@@ -72,13 +66,13 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
               src={logodark}
               className="card-logo card-logo-dark"
               alt="logo dark"
-              height="20"
+              height="60"
             />
             <img
               src={logolight}
               className="card-logo card-logo-light"
               alt="logo light"
-              height="20"
+              height="60"
             />
           </Link>
 
@@ -105,7 +99,7 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
                 "features",
                 "reviews",
                 "contact",
-                "About Us",
+                "AboutUs",
                 "career",
               ]}
               currentClassName="active"
@@ -114,38 +108,76 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
               id="navbar-example"
             >
               <li className="nav-item">
-                <NavLink className="fs-14 active" href="#hero">
+                <NavLink
+                  className={`fs-14 ${isItemActive("hero") ? "active" : ""}`}
+                  href="#hero"
+                  onClick={() => handleNavClick("hero")}
+                >
                   Home
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-14" href="#features">
+                <NavLink
+                  className={`fs-14 ${
+                    isItemActive("features") ? "active" : ""
+                  }`}
+                  href="#features"
+                  onClick={() => handleNavClick("features")}
+                >
                   Features
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-14" href="#services">
+                <NavLink
+                  className={`fs-14 ${
+                    isItemActive("services") ? "active" : ""
+                  }`}
+                  href="#services"
+                  onClick={() => handleNavClick("services")}
+                >
                   Services
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-14" href="#reviews">
+                <NavLink
+                  className={`fs-14 ${isItemActive("reviews") ? "active" : ""}`}
+                  href="#reviews"
+                  onClick={() => handleNavClick("reviews")}
+                >
                   Reviews
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-14" href="#contact">
+                <NavLink
+                  className={`fs-14 ${isItemActive("contact") ? "active" : ""}`}
+                  href="#contact"
+                  onClick={() => handleNavClick("contact")}
+                >
                   Contact
                 </NavLink>
               </li>
               <li className="nav-item">
                 <Link to="/AboutUs">
-                  <NavLink className="fs-14">About Us</NavLink>
+                  <NavLink
+                    className={`fs-14 ${
+                      isItemActive("AboutUs") ? "active" : ""
+                    }`}
+                    onClick={() => handleNavClick("AboutUs")}
+                  >
+                    About Us
+                  </NavLink>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/CareerPage">
-                  <NavLink className="fs-14">Career</NavLink>
+                  <NavLink
+                    className={`fs-14 ${
+                      isItemActive("career") ? "active" : ""
+                    }`}
+                    onClick={() => handleNavClick("career")}
+                  >
+                    Career
+                  </NavLink>
                 </Link>
               </li>
             </Scrollspy>
