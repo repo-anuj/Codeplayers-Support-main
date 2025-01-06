@@ -66,7 +66,7 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
               src={logodark}
               className="card-logo card-logo-dark"
               alt="logo dark"
-              height="60"
+              style={{ height: "53px" }}
             />
             <img
               src={logolight}
